@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const express=require("express");
 
-const bcrypt=require("bcrypt");
+
 const jwt=require("jsonwebtoken");
 const cors=require("cors");
 
@@ -15,6 +15,7 @@ app.use(express.json());
 require("./services/database")();
 
 const RouteUser=require("./routes/User.routes")
+const RouteLogin=require("./routes/Login.user.routes");
 
 //Open Route
 /*
@@ -31,6 +32,7 @@ app.get("/",(req,res)=>{
 */
 // Register User
 app.use("/",RouteUser);
+app.use("/",RouteLogin)
 
 app.listen(3000);
 
