@@ -2,10 +2,13 @@ const bcrypt=require("bcrypt")
 const User=require("../models/User.model");
 
 module.exports={
-    read(req,res){
+   async read(req,res){
         try {
+            
+            const user= await User.find()
             res.status(200)
-            .json({error:false,message:"Bem vindo a nossa API!"})
+            .json({error:false,message:"Bem vindo a nossa API!",user:user})
+
             //res.json({error:false,message:"Bem vindo a nossa API! RES"})
         } catch (error) {
             res.status(404).json({error:true,message:error})
