@@ -8,6 +8,7 @@ const jwt=require("jsonwebtoken");
 const app=express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static('public'))
 
 //Conectar a base de Dados
 require("./services/database")();
@@ -18,6 +19,10 @@ const RouteLogin=require("./routes/Login.user.routes");
 //Open Route
 
 // Register User
+//index.js
+app.get('/', (req, res) => {
+    res.sendFile('index.html', {root: path.join(__dirname, 'public')});
+})
 app.use("/",RouteUser);
 app.use("/",RouteLogin)
 
